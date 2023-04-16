@@ -1,6 +1,7 @@
 """
 Test the main module.
-Author: Wolf Paulus (wolf@paulus.com)
+OG Author: Wolf Paulus (https://wolfpaulus.com)
+New Hip Author: Marcello Novak (idonthaveawebsite.idk)
 """
 from unittest import TestCase
 from __main__ import is_prime, is_prime_str
