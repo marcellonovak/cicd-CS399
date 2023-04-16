@@ -5,7 +5,7 @@ New Hip Author: Marcello Novak (idonthaveawebsite.idk)
 """
 
 
-def is_prime(n) -> bool:
+def is_prime(n: int) -> bool:
     if n < 2:
         return False
     elif n == 2 or n == 3:
