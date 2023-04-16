@@ -1,5 +1,5 @@
 ## Fork of CICD Repo - Marcello Novak
-### CS 399 4/15/2023
+### CS 399 Intermediate Python, 4/15/2023
 
 # ERAU CS 399 
 ## CI/CD
