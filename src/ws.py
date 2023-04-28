@@ -17,6 +17,7 @@ class MyServer(BaseHTTPRequestHandler):
             status, content = 200, "OK"
 
         # API magic!
+        # API usage: http://localhost:8080/api/is_prime?number=7
         elif self.path == "/api/is_prime":
             # Set the response code to 200 (OK)
             self.send_response(200)
