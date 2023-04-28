@@ -1,6 +1,8 @@
 ## Fork of CICD Repo - Marcello Novak
 ### CS 399 Intermediate Python, 4/15/2023
 
+Edited the repository given to us to use as a prime checker, and not an odd/even checker.
+
 # ERAU CS 399 
 ## CI/CD
 ### Status ..

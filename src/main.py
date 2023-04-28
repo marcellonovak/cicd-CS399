@@ -1,7 +1,7 @@
 """
 Prime checker
 OG Author: Wolf Paulus (https://wolfpaulus.com)
-New Hip Author: Marcello Novak (idonthaveawebsite.idk)
+New Hip Author: Marcello Novak (https://marcellonovak.com)
 """
 
 
