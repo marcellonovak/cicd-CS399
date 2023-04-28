@@ -28,8 +28,7 @@ class MyServer(BaseHTTPRequestHandler):
                 self.end_headers()
 
                 # Get the number from the header
-                query = self.path.split('?')[1]
-                number = int(query.split('=')[1])
+                number = int(self.path.split('=')[1])
 
                 # Check if the number is prime
                 result = is_prime(number)
