@@ -19,30 +19,24 @@ class MyServer(BaseHTTPRequestHandler):
         # API magic!
         # API usage: http://localhost:8080/api/is_prime?number=7
         elif self.path == "/api/is_prime":
-            if "application/json" in self.headers['Accept']:
-                # Set the response code to 200 (OK)
-                self.send_response(200)
 
-                # Set the response headers
-                self.send_header('Content-Type', 'application/json')
-                self.end_headers()
+            # Set the response code to 200 (OK)
+            self.send_response(200)
 
-                # Get the number from the header
-                number = int(self.path.split('number=')[1])
-                print(number)
+            # Set the response headers
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
 
-                # Check if the number is prime
-                result = is_prime(number)
+            # Get the number from the header
+            query = self.path.split('?')[1]
+            number = int(query.split('=')[1])
 
-                # Create the response (dictionary and json)
-                response = {'number': number, 'is_prime': result}
-                self.wfile.write(json.dumps(response).encode())
-            else:
-                # Give a basic 406 error
-                self.send_response(406)
-                self.send_header('Content-Type', 'text/html')
-                self.end_headers()
-                self.wfile.write(b'<h1>Error 406: Not Acceptable</h1><p>This API only accepts JSON responses.</p>')
+            # Check if the number is prime
+            result = is_prime(number)
+
+            # Create the response (dictionary and json)
+            response = {'number': number, 'is_prime': result}
+            self.wfile.write(json.dumps(response).encode())
 
         # Okay resuming the code I basically stole from Canvas...
         elif self.path == "/" or self.path.startswith("/?number="):
