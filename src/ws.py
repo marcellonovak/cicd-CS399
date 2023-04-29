@@ -13,30 +13,26 @@ serverPort = 8080
 
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
+        print(self.path)
+
         if self.path == "/health":
             status, content = 200, "OK"
+            self.wfile.write(bytes(content, "utf-8"))
+            header = "text/html"
 
         # API magic!
-        # API usage: http://localhost:8080/api/is_prime?number=7
-        elif self.path == "/api/is_prime":
+        # API usage: http://localhost:8080/api/?number=x
+        elif self.path.startswith("/api/?number="):
 
             # Set the response code to 200 (OK)
-            self.send_response(200)
-
-            # Set the response headers
-            self.send_header('Content-Type', 'application/json')
-            self.end_headers()
-
-            # Get the number from the header
-            query = self.path.split('?')[1]
-            number = int(query.split('=')[1])
-
-            # Check if the number is prime
-            result = is_prime(number)
+            status = 200
+            number = self.path.split("=")[1]
+            result = is_prime(int(number))
 
             # Create the response (dictionary and json)
             response = {'number': number, 'is_prime': result}
-            self.wfile.write(json.dumps(response).encode())
+            content = json.dumps(response)
+            header = "application/json"
 
         # Okay resuming the code I basically stole from Canvas...
         elif self.path == "/" or self.path.startswith("/?number="):
@@ -46,10 +42,14 @@ class MyServer(BaseHTTPRequestHandler):
             with open('./src/response.html', 'r') as f:
                 # read the html template and fill in the parameters: path, time and result
                 content = f.read().format(path=self.path, time=asctime(), result=result)
+
+                header = "text/html"
+
         else:
             status, content = 404, "Not Found"
+
         self.send_response(status)
-        self.send_header("Content-type", "text/html")
+        self.send_header("Content-type", header)
         self.end_headers()
         self.wfile.write(bytes(content, "utf-8"))
 
